@@ -357,6 +357,23 @@ MOBILE
 
 }
 
+    .success-message {
+    display: none;
+    margin-top: 20px;
+    padding: 14px 18px;
+    background: #e8f8ed;
+    color: #218838;
+    border: 1px solid #b7e4c7;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.success-message.show {
+    display: block;
+}
+
 </style> 
 
 </head> 
@@ -2106,7 +2123,7 @@ MOBILE
         </div> 
 
 
-        <form action="#" method="post"> 
+        <form id="contactForm"> 
 
             <div class="form-row"> 
 
@@ -2186,8 +2203,12 @@ MOBILE
                 <i class="fa-solid fa-paper-plane"></i> 
 
             </button> 
+            <p id="successMessage" class="success-message">
+    Message sent successfully! We'll get back to you soon.
+</p>
 
         </form> 
+        
 
     </div> 
 
@@ -4522,6 +4543,25 @@ document.addEventListener("click", function(event) {
 
 });
 
+</script>
+    <script>
+    const contactForm = document.getElementById("contactForm");
+    const successMessage = document.getElementById("successMessage");
+
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Show success message
+        successMessage.classList.add("show");
+
+        // Clear the form
+        contactForm.reset();
+
+        // Hide message after 5 seconds
+        setTimeout(function () {
+            successMessage.classList.remove("show");
+        }, 5000);
+    });
 </script>
 
 </body> 
